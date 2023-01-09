@@ -52,17 +52,15 @@ def similarity_matrix(sens):
 
 def summarize(text, num_sentences):
     summarize_text = []
-    
     sentences = get_sentences(text)
     sim_matrix = similarity_matrix(sentences)
-
     sim_graph = nx.from_numpy_array(sim_matrix)
     rankings = nx.pagerank(sim_graph)
-
     ranked_sentence = sorted(((rankings[i],s) for i,s in enumerate(sentences)), reverse=True)    
-
-    for i in range(1):
+    print("Indexes of top ranked_sentence order are ", ranked_sentence)
+    for i in range(num_sentences):
       summarize_text.append("".join(ranked_sentence[i][1]))
 
-    return summarize_text
+    return "Summarize Text:", "  ".join(summarize_text)
+
 
